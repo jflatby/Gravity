@@ -4,21 +4,22 @@ Body::Body(float r, float m, sf::Vector2f pos, sf::Vector2f vel)
 {
     radius = r;
     mass = m;
-    position = pos;
     velocity = vel;
 
     shape = sf::CircleShape(r);
-    shape.setPosition(position);
+    shape.setPosition(pos);
     shape.setOrigin(r, r);
-    shape.setFillColor(sf::Color::Yellow);
+    shape.setFillColor(sf::Color::Blue);
 }
 
 void Body::update(std::vector<Body>& bodies)
 {
+    //Calculate gravity from all other bodies
     sf::Vector2f force = getGravityForce(bodies);
+
+    //Use to calculate new velocity and position
     velocity += force / mass;
-    position += velocity;
-    shape.setPosition(position);
+    shape.setPosition(getPosition() + velocity);
 }
 
 sf::Vector2f Body::getGravityForce(std::vector<Body>& bodies){
@@ -53,6 +54,9 @@ float Body::getMass(){
     return mass;
 }
 
+void Body::setPosition(sf::Vector2f newPos){
+    shape.setPosition(newPos);
+}
 sf::Vector2f Body::getPosition(){
-    return position;
+    return shape.getPosition();
 }

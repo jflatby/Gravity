@@ -6,7 +6,6 @@ class Body
 private:
     float radius;
     float mass;
-    sf::Vector2f position;
     sf::Vector2f velocity;
     sf::CircleShape shape;
     sf::Vector2f getGravityForce(std::vector<Body>& bodies);
@@ -16,5 +15,6 @@ public:
     void update(std::vector<Body>& bodies);
     sf::CircleShape getShape();
     float getMass();
+    void setPosition(sf::Vector2f newPos);
     sf::Vector2f getPosition();
 };
