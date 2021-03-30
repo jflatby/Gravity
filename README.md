@@ -1,1 +1,1 @@
-# Gravity
+# N-body simulation with live graphics using SFML
